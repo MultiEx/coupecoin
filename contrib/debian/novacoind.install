@@ -1,0 +1,2 @@
+debian/bin/Coupecoind usr/bin
+src/Coupecoind usr/lib/Coupecoin

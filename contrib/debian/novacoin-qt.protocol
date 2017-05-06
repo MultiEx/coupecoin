@@ -1,0 +1,11 @@
+[Protocol]
+exec=Coupecoin-qt '%u'
+protocol=Coupecoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

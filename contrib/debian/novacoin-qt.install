@@ -1,0 +1,5 @@
+Coupecoin-qt usr/bin
+share/pixmaps/Coupecoin32.xpm usr/share/pixmaps
+share/pixmaps/Coupecoin80.xpm usr/share/pixmaps
+debian/Coupecoin-qt.desktop usr/share/applications
+debian/Coupecoin-qt.protocol usr/share/kde4/services/

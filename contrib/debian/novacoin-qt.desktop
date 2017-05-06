@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Coupecoin
+Comment=Coupecoin P2P Cryptocurrency
+Comment[ru]=Coupecoin, P2P криптовалюта
+Comment[fr]=Coupecoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Coupecoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/Coupecoin-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/Coupecoin80.xpm
+MimeType=x-scheme-handler/Coupecoin;
+Categories=Office;

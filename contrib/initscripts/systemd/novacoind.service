@@ -1,0 +1,11 @@
+[Unit]
+Description=Coupecoin daemon serivce
+After=network.target
+
+[Service]
+Type=simple
+User=Coupecoin
+ExecStart=/opt/Coupecoin/Coupecoind
+
+[Install]
+WantedBy=multi-user.target

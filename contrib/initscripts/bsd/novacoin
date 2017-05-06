@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# PROVIDE: Coupecoin
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# Coupecoin_enable (bool): Set to NO by default. Set this variable to YES if you want to enable Coupecoin service.
+# Coupecoin_config (path): Set to /usr/local/etc/Coupecoin.conf by default.
+# Coupecoin_user:  The user account Coupecoin daemon runs as. It uses 'root' user by default.
+# Coupecoin_group: The group account Coupecoin daemon runs as. It uses 'wheel' group by default.
+# Coupecoin_datadir (str): Default to "/var/db/Coupecoin". Base data directory.
+
+. /etc/rc.subr
+
+name=Coupecoin
+rcvar=Coupecoin_enable
+
+: ${Coupecoin_enable:=NO}
+: ${Coupecoin_config=/usr/local/etc/Coupecoin.conf}
+: ${Coupecoin_datadir=/var/db/Coupecoin}
+: ${Coupecoin_user="root"}
+: ${Coupecoin_group="wheel"}
+
+required_files=${Coupecoin_config}
+command=/usr/local/bin/Coupecoind
+Coupecoin_chdir=${Coupecoin_datadir}
+pidfile="${Coupecoin_datadir}/Coupecoind.pid"
+stop_cmd=Coupecoin_stop
+command_args="-conf=${Coupecoin_config} -datadir=${Coupecoin_datadir} -daemon -pid=${pidfile}"
+start_precmd="${name}_prestart"
+
+Coupecoin_create_datadir()
+{
+	echo "Creating data directory"
+	eval mkdir -p ${Coupecoin_datadir}
+	[ $? -eq 0 ] && chown -R ${Coupecoin_user}:${Coupecoin_group} ${Coupecoin_datadir}
+}
+
+Coupecoin_prestart()
+{
+	if [ ! -d "${Coupecoin_datadir}/." ]; then
+		Coupecoin_create_datadir || return 1
+	fi
+}
+
+Coupecoin_requirepidfile()
+{
+	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
+		echo "${name} not running? (check $pidfile)."
+		exit 1
+	fi
+}
+
+Coupecoin_stop()
+{
+    Coupecoin_requirepidfile
+
+	echo "Stopping ${name}."
+	eval ${command} -conf=${Coupecoin_config} -datadir=${Coupecoin_datadir} stop
+	wait_for_pids ${rc_pid}
+}
+
+load_rc_config $name
+run_rc_command "$1"
