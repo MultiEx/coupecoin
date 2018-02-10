@@ -2316,9 +2316,10 @@ bool CBlock::AcceptBlock()
     if (GetBlockTime() <= nMedianTimePast || FutureDrift(GetBlockTime()) < pindexPrev->GetBlockTime())
         return error("AcceptBlock() : block's timestamp is too early");
 
+	// Disabled to fix stalled chain
     // Don't accept blocks with future timestamps
-     if (pindexPrev->nHeight > 50000 && nMedianTimePast  + nMaxOffset < GetBlockTime())
-        return error("AcceptBlock() : block's timestamp is too far in the future");
+    // if (pindexPrev->nHeight > 50000 && nMedianTimePast  + nMaxOffset < GetBlockTime())
+    //    return error("AcceptBlock() : block's timestamp is too far in the future");
 
     // Check that all transactions are finalized
     BOOST_FOREACH(const CTransaction& tx, vtx)
