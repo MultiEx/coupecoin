@@ -939,11 +939,11 @@ void ThreadSocketHandler2(void* parg)
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    {"64.52.86.172", "64.52.86.172"},
+    {"64.52.22.45", "64.52.22.45"},
     {"dnsseed.bitcoins4all.net", "dnsseed.bitcoins4all.net"},
-    {"64.52.85.168", "64.52.85.168"},
+    {"64.52.87.106", "64.52.87.106"},
     {"dnsseed1.bitcoins4all.net", "dnsseed1.bitcoins4all.net"},
-    {"64.52.23.150", "64.52.23.150"},
+    {"64.52.23.188", "64.52.23.188"},
     {"dnsseed2.bitcoins4all.net", "dnsseed2.bitcoins4all.net"},
 };
 
